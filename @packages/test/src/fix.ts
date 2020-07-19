@@ -12,14 +12,14 @@ export async function bootstrap(fixture?: string, directory?: string) {
 		unsafeCleanup: true
 	});
 
-	if (typeof fixture !== 'undefined') {
-		const packageDir = await pkgDir(directory);
-		if (!packageDir) {
-			throw new Error(`ENOENT, no such file or directory '${packageDir}'`);
-		}
-
-		await fs.copy(path.join(packageDir, fixture), tmpDir.name);
+	if (typeof fixture === 'undefined') {
+		return tmpDir.name;
+	}
+	const packageDir = await pkgDir(directory);
+	if (!packageDir) {
+		throw new Error(`ENOENT, no such file or directory '${packageDir}'`);
 	}
 
+	await fs.copy(path.join(packageDir, fixture), tmpDir.name);
 	return tmpDir.name;
 }

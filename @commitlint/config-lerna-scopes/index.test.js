@@ -92,6 +92,6 @@ test('uses lerna version >= 3 if installed', async () => {
 	const packages = await config.utils.getPackages({cwd});
 
 	expect(packages).toEqual(['a', 'b']);
-	expect(semverLt).toHaveBeenLastCalledWith('3.20.2', '3.0.0');
+	expect(semverLt).toHaveBeenLastCalledWith('3.22.1', '3.0.0');
 	expect(semverLt).toHaveLastReturnedWith(false);
 });
